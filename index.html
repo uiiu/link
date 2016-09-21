@@ -424,6 +424,11 @@ function aClick(obj) {
 
 var oMenu = document.getElementById('menu');
 var oArrow = oMenu.getElementsByTagName('span')[0];
+
+var removeDefault = function (e) { e.preventDefault(); }
+/*document.addEventListener(……,a,……);
+document.removeEventListener(……,a,……);*/
+
 window.onscroll=function(){
     //----------------
 var oA = true;
@@ -438,9 +443,10 @@ oArrow.onclick = function(){
             li[i].style.width = '25%';
             li[i].style.padding = 0;
         }
-       document.addEventListener('touchmove', function (event) {
-            event.preventDefault();
-        },false);
+       document.addEventListener('touchmove',removeDefault,false);
+       // window.addEventListener('mousewheel',function(e){return false},false);
+       // document.addEventListener('mousewheel',function(e){return false},false);
+       // window.onmousewheel=document.onmousewheel=function()｛return false;｝
 /*removeEvent(ul, "touchstart", touchStart);
 removeEvent(ul, "touchmove", touchMove);
 removeEvent(ul, "touchend", touchEnd);
@@ -461,6 +467,7 @@ removeEvent(ul, "touchcancel", touchCancel);*/
         console.log(ul.style.width);
     }
     oA = !oA;
+        document.removeEventListener('touchmove',removeDefault,false);
     };
 
 
